@@ -1,5 +1,5 @@
 /**
- * Resolve a public-folder path for the current Vite base (GitHub Pages subpath).
+ * Resolve a public-folder path for the current Vite base.
  * @param {string} path e.g. "/images/photo-1.png" or "audio/music.m4a"
  */
 export function assetUrl(path) {
