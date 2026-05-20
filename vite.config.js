@@ -2,8 +2,8 @@ import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import tailwindcss from '@tailwindcss/vite'
 
-/** Root-relative base for local dev and most hosts. Set to `/<repo-name>/` for GitHub Pages project sites. */
-const BASE = '/'
+/** GitHub Pages project site: https://moaaz313.github.io/nema/ */
+const GITHUB_PAGES_BASE = '/nema/'
 
 /** Serve .m4a with audio/mp4 so browsers decode voice notes correctly */
 function m4aMimePlugin() {
@@ -24,7 +24,8 @@ function m4aMimePlugin() {
   }
 }
 
-export default defineConfig({
-  base: BASE,
+export default defineConfig(({ command }) => ({
+  // Dev: '/' so http://localhost:5173/ works. Build/preview: '/nema/' for GitHub Pages.
+  base: command === 'serve' ? '/' : GITHUB_PAGES_BASE,
   plugins: [vue(), tailwindcss(), m4aMimePlugin()],
-})
+}))
